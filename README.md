@@ -1,6 +1,6 @@
 # 🛒 Ecommerce Item REST API
 
-A simple Spring Boot RESTful API for managing ecommerce items.
+A simple Spring Boot RESTful API for managing ecommerce items.  
 This project demonstrates REST API development using in-memory storage with proper validation and global exception handling.
 
 ---
@@ -11,58 +11,49 @@ This project demonstrates REST API development using in-memory storage with prop
 - Spring Boot 3
 - Maven
 - Lombok
-- Bean Validation (Jakarta Validation)
+- Jakarta Bean Validation
 - In-memory storage using ArrayList
 
 ---
 
 ## 📂 Project Architecture
 
-This project follows layered architecture:
-
 Controller → Service → Repository
 
-- Controller: Handles HTTP requests
-- Service: Contains business logic
-- Repository: Manages in-memory data storage
+- **Controller**: Handles HTTP requests
+- **Service**: Business logic layer
+- **Repository**: Manages in-memory data storage
 
 ---
 
-##  How to Run the Application Locally
+## ▶️ How to Run the Application Locally
 
-### 1️ Clone the repository
+### 1️⃣ Clone the Repository
 
 ```bash
-2️ Build the project
+git clone https://github.com/NiviJais/ecommerce-item-api.git
+cd ecommerce-item-api
+2️⃣ Build the Project
 mvn clean install
-
-3️ Run the application
+3️⃣ Run the Application
 mvn spring-boot:run
-
 OR
 
 java -jar target/ecommerce-item-api-0.0.1-SNAPSHOT.jar
-
-4️ Application will start at:
+4️⃣ Application URL
 http://localhost:8080
-
 📌 API Endpoints
- 1. Add Item
-
+🔹 Add Item
 POST /api/items
 
-Request Body:
-
+Request Body
 {
   "name": "Laptop",
   "description": "Gaming Laptop",
   "price": 75000,
   "quantity": 5
 }
-
-
-Success Response:
-
+Success Response
 {
   "id": 1,
   "name": "Laptop",
@@ -70,27 +61,20 @@ Success Response:
   "price": 75000,
   "quantity": 5
 }
-
-
-Validation Errors:
-
+Validation Rules
 Name cannot be blank
 
 Price must be greater than 0
 
 Quantity cannot be negative
 
- 2. Get Item By ID
-
+🔹 Get Item By ID
 GET /api/items/{id}
 
 Example:
 
 GET /api/items/1
-
-
-Success Response:
-
+Success Response
 {
   "id": 1,
   "name": "Laptop",
@@ -98,6 +82,16 @@ Success Response:
   "price": 75000,
   "quantity": 5
 }
-git clone https://github.com/your-username/ecommerce-item-api.git
-cd ecommerce-item-api
-# ecommerce-item-api
+If item is not found:
+Item not found with id: 5
+
+Important Implementation Details
+Data is stored in-memory using ArrayList.
+
+Data will be lost when the application restarts.
+
+IDs are auto-generated starting from 1.
+
+Validation is implemented using @Valid, @NotBlank, @NotNull, and @Min.
+
+Global exception handling is implemented using @RestControllerAdvice.
